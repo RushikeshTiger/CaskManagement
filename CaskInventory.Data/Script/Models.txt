@@ -1,0 +1,87 @@
+create database CaskDb
+
+create table Cask(caskId int primary key, caskDescription varchar(25),
+caskType varchar(25))
+
+ALTER TABLE Cask
+MODIFY caskId INT NOT NULL AUTO_INCREMENT;
+drop table cask
+
+create table Distillery(distilleryId int primary key,distilleryName varchar(25), 
+distilleryILocation varchar(25) )
+
+select * from cask
+
+INSERT INTO cask (caskDescription, caskType)
+VALUES ('value1', 'value2');
+
+ALTER TABLE Distillery
+MODIFY distilleryId INT NOT NULL AUTO_INCREMENT;
+
+create table Client (clientId int primary key, clientName varchar(25),
+clientEmail varchar(25),clientAddress varchar(25))
+
+ALTER TABLE Client
+MODIFY clientId INT NOT NULL AUTO_INCREMENT;
+
+create table SalesPerson(salespersonId int primary key, salespersonName varchar(25))
+ALTER TABLE SalesPerson
+MODIFY salespersonId INT NOT NULL AUTO_INCREMENT;
+
+create table Supplier(supplierId int primary key, supplierName varchar(25))
+ALTER TABLE Supplier
+MODIFY supplierId INT NOT NULL AUTO_INCREMENT;
+
+create table CaskFilling(cfId int primary key, distilleryId int, caskId int, RLAOLA DECIMAL(10,2), 
+ABV DECIMAL(10,2), caskPrice DECIMAL(10,2), bulkLiture DECIMAL(10,2),region varchar(25), fillingDate date )
+ALTER TABLE CaskFilling
+MODIFY cfId INT NOT NULL AUTO_INCREMENT;
+ALTER TABLE CaskFilling
+ADD CONSTRAINT FK_distcaskfill FOREIGN KEY (distilleryId) REFERENCES Distillery(distilleryId)
+ALTER TABLE CaskFilling
+ADD CONSTRAINT FK_caskcaskfill FOREIGN KEY (caskId) REFERENCES Cask(caskId)
+
+create table Purchases(purchaseId int primary key, invoiceNo int,invoiceDescription varchar(25),
+invoiceDate date, caskId int, clientId int, salesPersonId int, supplierId int, 
+InvoiceLocation varchar(25), DoRecorded varchar(10), DoDate date, DoLocation varchar(25), 
+DoSignedReturnedDate date,TransferComplete varchar(25), AmountPaid DECIMAL(10,2), BeingMovedTo varchar(25))
+drop table Purchases
+ALTER TABLE CaskFilling
+MODIFY cfId INT NOT NULL AUTO_INCREMENT;
+ALTER TABLE Purchases
+ADD CONSTRAINT FK_caskfillclientprchase FOREIGN KEY (caskId) REFERENCES Cask(caskId)
+ALTER TABLE Purchases
+ADD CONSTRAINT FK_clientpurchase FOREIGN KEY (clientId) REFERENCES Client(clientId)
+ALTER TABLE Purchases
+ADD CONSTRAINT FK_salesprsnclientpurchase FOREIGN KEY (salesPersonId) REFERENCES SalesPerson(salesPersonId)
+ALTER TABLE Purchases
+ADD CONSTRAINT FK_supplierclientpurchase FOREIGN KEY (supplierId) REFERENCES Supplier(supplierId)
+
+create table Transfers 
+(transferId int primary key,
+caskId int ,
+transferDate date,
+From_Client_ID int,
+To_Client_ID int
+)
+ALTER TABLE Transfers
+MODIFY transferId INT NOT NULL AUTO_INCREMENT;
+ALTER TABLE Transfers
+ADD CONSTRAINT FK_casktransfer FOREIGN KEY (caskId) REFERENCES Cask(caskId)
+ALTER TABLE Transfers
+ADD CONSTRAINT FK_clienttransfer FOREIGN KEY (From_Client_ID) REFERENCES Client(clientID)
+ALTER TABLE Transfers
+ADD CONSTRAINT FK_clienttotransfer FOREIGN KEY (To_Client_ID) REFERENCES Client(clientID)
+
+create table storage
+(StorageId int primary key,
+CaskId int,
+Storage_Anniversary varchar(25),
+Storage_Inventory_Sent varchar(25),
+Storage_Reminder varchar(25)
+)
+
+ALTER TABLE storage
+MODIFY StorageId INT NOT NULL AUTO_INCREMENT;
+ALTER TABLE storage
+ADD CONSTRAINT FK_CaskStorage FOREIGN KEY (CaskId) REFERENCES Cask(caskId)

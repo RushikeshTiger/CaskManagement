@@ -1,0 +1,40 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+	  <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+	  <PackageReference Include="Mapster" Version="7.3.0" />
+	  <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+      <PackageReference Include="Selenium.WebDriver" Version="4.8.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CaskInventory.Common\CaskInventory.Common.csproj" />
+    <ProjectReference Include="..\CaskInventory.Data\CaskInventory.Data.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="caskFilling\Delete\" />
+    <Folder Include="caskFilling\Update\" />
+    <Folder Include="salesperson\Create\" />
+    <Folder Include="salesperson\Delete\" />
+    <Folder Include="salesperson\Update\" />
+    <Folder Include="Services\" />
+    <Folder Include="storage\Create\" />
+    <Folder Include="storage\Get\" />
+    <Folder Include="storage\Delete\" />
+    <Folder Include="storage\Update\" />
+    <Folder Include="supplier\Create\" />
+    <Folder Include="supplier\Delete\" />
+    <Folder Include="supplier\Update\" />
+    <Folder Include="transfer\Delete\" />
+    <Folder Include="transfer\Update\" />
+    <Folder Include="user\GetUser\" />
+  </ItemGroup>
+
+</Project>
